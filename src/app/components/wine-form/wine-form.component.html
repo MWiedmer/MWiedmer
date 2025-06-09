@@ -1,0 +1,64 @@
+<div class="container mt-4">
+  <h2>Add New Wine</h2>
+  <form (ngSubmit)="onSubmit()" #wineForm="ngForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Wine Name</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="wine.name" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="producer" class="form-label">Producer</label>
+      <input type="text" class="form-control" id="producer" name="producer" [(ngModel)]="wine.producer" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="country" class="form-label">Country</label>
+      <input type="text" class="form-control" id="country" name="country" [(ngModel)]="wine.country" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="vintage" class="form-label">Vintage</label>
+      <input type="number" class="form-control" id="vintage" name="vintage" [(ngModel)]="wine.vintage" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="type" class="form-label">Type</label>
+      <select class="form-select" id="type" name="type" [(ngModel)]="wine.type" required>
+        <option value="Red">Red</option>
+        <option value="White">White</option>
+        <option value="Rosé">Rosé</option>
+        <option value="Sparkling">Sparkling</option>
+        <option value="Dessert">Dessert</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="grape" class="form-label">Grape Variety</label>
+      <select class="form-select" id="grape" name="grape" [(ngModel)]="wine.grape_id" required>
+        <option *ngFor="let grape of grapes" [value]="grape.id">{{ grape.name }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="cost" class="form-label">Cost ($)</label>
+      <input type="number" class="form-control" id="cost" name="cost" [(ngModel)]="wine.cost" step="0.01" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="rating" class="form-label">Rating (0-100)</label>
+      <input type="number" class="form-control" id="rating" name="rating" [(ngModel)]="wine.rating" min="0" max="100" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Quantity</label>
+      <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="wine.quantity" min="0" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="labels" class="form-label">Labels (comma-separated)</label>
+      <input type="text" class="form-control" id="labels" name="labels" [(ngModel)]="labelsInput" placeholder="e.g., Organic, Biodynamic, Natural">
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!wineForm.form.valid">Add Wine</button>
+  </form>
+</div> 

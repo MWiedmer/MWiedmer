@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h1 class="mb-4">Wine Collection</h1>
+  <div class="row">
+    <div class="col-12">
+      <div class="list-group">
+        <div *ngFor="let wine of wines" class="list-group-item">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h4 class="mb-1">{{ wine.name }}</h4>
+              <p class="mb-1">
+                <strong>Producer:</strong> {{ wine.producer }} |
+                <strong>Country:</strong> {{ wine.country }} |
+                <strong>Vintage:</strong> {{ wine.vintage }} |
+                <strong>Type:</strong> {{ wine.type }} |
+                <strong>Grape:</strong> {{ wine.grape }}
+              </p>
+              <p class="mb-1">
+                <strong>Rating:</strong> {{ wine.rating }}/100 |
+                <strong>Cost:</strong> ${{ wine.cost.toFixed(2) }}
+              </p>
+              <div *ngIf="wine.labels && wine.labels.length > 0">
+                <small>
+                  <span *ngFor="let label of wine.labels" class="badge bg-secondary me-1">
+                    {{ label }}
+                  </span>
+                </small>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="input-group" style="width: 150px;">
+                <button class="btn btn-outline-secondary" type="button" (click)="updateQuantity(wine, -1)" [disabled]="wine.quantity <= 0">-</button>
+                <input type="text" class="form-control text-center" [value]="wine.quantity" readonly>
+                <button class="btn btn-outline-secondary" type="button" (click)="updateQuantity(wine, 1)">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
